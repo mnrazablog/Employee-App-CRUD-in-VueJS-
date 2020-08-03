@@ -1,5 +1,9 @@
 # employee-app
 
+## Demo
+
+See demo here https://mnrazablog.github.io/Employee-App-CRUD-in-VueJS-/
+
 ## Project setup
 ```
 npm install

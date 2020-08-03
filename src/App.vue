@@ -23,47 +23,73 @@ export default {
   },
   data() {
     return {
-      employees: [
-        {
-          id: 1,
-          name: "MN Raza",
-          email: "mnraza95@gmail.com"
-        },
-        {
-          id: 2,
-          name: "MH Raza",
-          email: "mhraza95@gmail.com"
-        },
-        {
-          id: 3,
-          name: "H Shyama",
-          email: "shyma@gmail.com"
-        },
-        {
-          id: 4,
-          name: "Rahul",
-          email: "rahul@gmail.com"
-        },
-        {
-          id: 5,
-          name: "Turgut Alp ",
-          email: "iyi.alp@gmail.com"
-        }
-      ]
+      employees: []
     };
   },
+  mounted() {
+    this.getEmployees();
+  },
   methods: {
-    addEmployee(employee) {
-      this.employees = [...this.employees, employee];
+    async getEmployees() {
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users')
+        const data = await response.json()
+        this.employees = data
+      } catch (error) {
+        console.error(error)
+      }
     },
-    deleteEmployee(id) {
-      this.employees = this.employees.filter(employee => employee.id !== id);
+    async addEmployee(employee) {
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+          method: 'POST',
+          body: JSON.stringify(employee),
+          headers: { "Content-type": "application/json; charset=UTF-8" }
+        })
+        const data = await response.json()
+        this.employees = [...this.employees, data]
+      } catch (error) {
+        console.error(error)
+      }
     },
-    editEmployee(id, updatedEmployee) {
-      this.employees = this.employees.map(employee =>
-        employee.id === id ? updatedEmployee : employee
-      );
-    }
+    async editEmployee(id, updatedEmployee) {
+      try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+          method: 'PUT',
+          body: JSON.stringify(updatedEmployee),
+          headers: { "Content-type": "application/json; charset=UTF-8" }
+        })
+        const data = await response.json()
+        this.employees = this.employees.map(employee => employee.id === id ? data : employee)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteEmployee(id) {
+      try {
+        await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+          method: 'DELETE'
+        })
+        this.employees = this.employees.filter(employee => employee.id !== id)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    
+    
+    // addEmployee(employee) {
+    //   this.employees = [...this.employees, employee];
+    // },
+    // deleteEmployee(id) {
+    //   this.employees = this.employees.filter(employee => employee.id !== id);
+    // },
+    // editEmployee(id, updatedEmployee) {
+    //   this.employees = this.employees.map(employee =>
+    //     employee.id === id ? updatedEmployee : employee
+    //   );
+    // }
+
   }
 };
 </script>
@@ -73,7 +99,12 @@ button {
   background: #009435;
   border: 1px solid #009435;
 }
-
+button:hover,
+button:active,
+button:focus {
+  background: #32a95d;
+  border: 1px solid #32a95d;
+}
 .small-container {
   max-width: 680px;
 }

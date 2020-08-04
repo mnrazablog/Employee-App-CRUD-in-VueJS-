@@ -26,7 +26,7 @@
         v-if="success"
         class="success-message"
       >✅ Employee successfully added</p>
-      <button>Add Employee</button>
+      <button><i class="fa fa-plus-square" aria-hidden="true"></i>   Add Employee</button>
     </form>
 
   </div>

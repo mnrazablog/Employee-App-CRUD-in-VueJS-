@@ -34,15 +34,17 @@
           </td>
           <td v-else>{{employee.email}}</td>
           <td v-if="editing === employee.id">
-            <button @click="editEmployee(employee)">Save</button>
+            <button @click="editEmployee(employee)"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></button>
             <button
               class="muted-button"
               @click="cancelEdit(employee)"
-            >Cancel</button>
+            ><i class="fa fa-undo fa-2x" aria-hidden="true"></i></button>
           </td>
           <td v-else>
-            <button @click="editMode(employee)">Edit</button>
-            <button @click="$emit('delete:employee', employee.id)">Delete</button>
+            <button @click="editMode(employee)"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button>
+            <button @click="$emit('delete:employee', employee.id)" class="del">
+            <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+            </button>
           </td>
 
         </tr>
@@ -89,5 +91,8 @@ input {
 }
 .empty-table {
   text-align: center;
+}
+.del{
+  background-color:red;
 }
 </style>

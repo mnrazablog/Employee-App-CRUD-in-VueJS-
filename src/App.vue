@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="small-container">
-    <h1>Employee</h1>
+    <h1 class="text-white">Employee</h1>
 
     <employee-form @add:employee="addEmployee" />
     <employee-table
@@ -107,5 +107,11 @@ button:focus {
 }
 .small-container {
   max-width: 680px;
+  color:#fff;
+  padding:15px;
+  background-color:#5BAC99;
+}
+.text-white{
+  color:#fff;
 }
 </style>

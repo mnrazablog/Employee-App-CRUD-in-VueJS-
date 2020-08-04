@@ -7,8 +7,8 @@
       No employees
     </p>
     <table v-else>
-      <thead>
-        <tr>
+      <thead class="text-black">
+        <tr >
           <th>Name</th>
           <th>Email</th>
           <th>Actions</th>
@@ -83,6 +83,11 @@ export default {
 </script>
 
 <style scoped>
+.text-black{
+  background:#000; 
+  padding:10px;
+}
+
 button {
   margin: 0 0.5rem 0 0;
 }

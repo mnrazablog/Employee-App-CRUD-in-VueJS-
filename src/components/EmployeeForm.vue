@@ -92,4 +92,9 @@ form {
 .success-message {
   color: #32a95d;
 }
+input{
+  background:#fff;
+  font-size:18px;
+  color:green;
+}
 </style>
